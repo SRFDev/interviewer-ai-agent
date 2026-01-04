@@ -1,0 +1,8 @@
+langchain-core
+langchain-google-vertexai
+langgraph
+google-cloud-firestore
+langchain-google-firestore
+streamlit
+python-dotenv
+pydantic
