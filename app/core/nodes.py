@@ -3,11 +3,21 @@ from langchain_google_vertexai import ChatVertexAI
 from app.core.state import InterviewState
 from app.core.prompts import SYSTEM_PROMPT_TEMPLATE, EVALUATOR_PROMPT, GENERATOR_INSTRUCTION
 import os
+from dotenv import load_dotenv  
+
+# LOAD SECRETS
+load_dotenv()  # <--- EXECUTE LOAD
 
 # Initialize LLM (Shared Resource)
 PROJECT_ID = os.getenv("GCP_PROJECT_ID")
 REGION = os.getenv("GCP_REGION")
 MODEL_ID = os.getenv("VERTEX_MODEL_ID")
+
+
+# Safety Check 
+if not PROJECT_ID or not REGION:
+    raise ValueError(f"❌ GCP Credentials missing. Project: {PROJECT_ID}, Region: {REGION}")
+
 
 llm = ChatVertexAI(
     model_name=MODEL_ID,
